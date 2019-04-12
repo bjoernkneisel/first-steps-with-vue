@@ -15,6 +15,7 @@
   </head>
   <body>
     <div id="root">
+      <h1>Laracasts EP#1-5</h1>
       <li v-for="name in names">{{ name }}</li>
       <!-- Allow user to add names -->
       <input type="text" v-model="newName">
@@ -30,11 +31,26 @@
       <!-- Dynamically disabled button -->
       <button :disabled="isDisabled">Ich bin ein Button der verschiedene States hat</button>
       <button @click="toggleButtonState()">Change Button State</button>
+
+      <h1>Laracasts EP#6 Computed Properties</h1>
+      <!-- Computed Property -->
+      <h2>{{ reversedMessage }}</h2>
+      
+      <h2>All tasks</h2>
+      <ul>
+        <li>Description || Completed</li>
+        <li v-for="task in tasks">{{task.description}} || {{task.completed}}</li>
+      </ul>
+
+      <h2>Incomplete tasks</h2>
+      <ul>
+        <li v-for="task in incompleteTasks">{{task.description}}</li>
+      </ul>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-      new Vue({
+      var app = new Vue({
         el: '#root',
         data: {
           newName: '',
@@ -43,7 +59,16 @@
           hoverTitle: 'Ich bin ein cooler Button',
           className: 'color-red',
           isLoading: false,
-          isDisabled: true
+          isDisabled: true,
+          message: 'Hello World',
+          tasks: [
+            { description: 'Go to the store', completed: true },
+            { description: 'Finish operations research homework', completed: false },
+            { description: 'Make donation to Deutsche Tierrettung', completed: true },
+            { description: 'Go through E-Mail inbox', completed: false },
+            { description: 'Walk yuki', completed: true },
+            { description: 'Clean apartment', completed: false },
+          ]
         },
         methods: {
           addName() {
@@ -55,6 +80,14 @@
           },
           toggleButtonState() {
             this.isDisabled = !this.isDisabled;
+          }
+        },
+        computed: {
+          reversedMessage() {
+            return this.message.split('').reverse().join('');
+          },
+          incompleteTasks() {
+            return this.tasks.filter(task => !task.completed);
           }
         }
       })
