@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+    <title></title>
+  </head>
+  <body>
+    <div id="root">
+      <li v-for="name in names">{{ name }}</li>
+      <!-- Allow user to add names -->
+      <input type="text" v-model="newName">
+      <button @click="addName()">Add Name</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#root',
+        data: {
+          newName: '',
+          // Array of names
+          names: ['Joe', 'Mary', 'Jane', 'Jack']
+        },
+        methods: {
+          addName() {
+            this.names.push(this.newName);
+            this.newName = '';
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
