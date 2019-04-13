@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
   </head>
     <title></title>
 
@@ -15,46 +16,53 @@
     </style>
   </head>
   <body>
-    <div id="root">
-      <h1>Laracasts EP#1-5</h1>
-      <li v-for="name in names">{{ name }}</li>
-      <!-- Allow user to add names -->
-      <input type="text" v-model="newName">
-      <button @click="addName()">Add Name</button>
+    <div id="root" class="container">
+      <div class="content">
+        <h1>Laracasts EP#1-5</h1>
+        <li v-for="name in names">{{ name }}</li>
+        <!-- Allow user to add names -->
+        <input type="text" v-model="newName">
+        <button @click="addName()">Add Name</button>
 
-      <button :title="hoverTitle">Hover over me!</button>
+        <button :title="hoverTitle">Hover over me!</button>
 
-      <h1 :class="className">Ich bin ein mit binding gestylter H1-Tag</h1>
+        <h1 :class="className">Ich bin ein mit binding gestylter H1-Tag</h1>
 
-      <!-- Cleaner way to do this -->
-      <button :class="{ 'is-loading': isLoading }" @click="toggleClass()">Click Me</button>
+        <!-- Cleaner way to do this -->
+        <button :class="{ 'is-loading': isLoading }" @click="toggleClass()">Click Me</button>
 
-      <!-- Dynamically disabled button -->
-      <button :disabled="isDisabled">Ich bin ein Button der verschiedene States hat</button>
-      <button @click="toggleButtonState()">Change Button State</button>
+        <!-- Dynamically disabled button -->
+        <button :disabled="isDisabled">Ich bin ein Button der verschiedene States hat</button>
+        <button @click="toggleButtonState()">Change Button State</button>
 
-      <h1>Laracasts EP#6 Computed Properties</h1>
-      <!-- Computed Property -->
-      <h2>{{ reversedMessage }}</h2>
-      
-      <h2>All tasks</h2>
-      <ul>
-        <li>Description || Completed</li>
-        <li v-for="task in tasks">{{task.description}} || {{task.completed}}</li>
-      </ul>
+        <h1>Laracasts EP#6 Computed Properties</h1>
+        <!-- Computed Property -->
+        <h2>{{ reversedMessage }}</h2>
+        
+        <h2>All tasks</h2>
+        <ul>
+          <li>Description || Completed</li>
+          <li v-for="task in tasks">{{task.description}} || {{task.completed}}</li>
+        </ul>
 
-      <h2>Incomplete tasks</h2>
-      <ul>
-        <li v-for="task in incompleteTasks">{{task.description}}</li>
-      </ul>
+        <h2>Incomplete tasks</h2>
+        <ul>
+          <li v-for="task in incompleteTasks">{{task.description}}</li>
+        </ul>
 
-      <h1>Laracasts EP#7-X Components 101</h1>
-      <h2>Using Slots with Components</h2>
-      <task>Go to the store</task>
-      <task>Go to the bank</task>
+        <h1>Laracasts EP#7-8 Components & Nesting</h1>
+        <h2>Using Slots with Components</h2>
+        <task>Go to the store</task>
+        <task>Go to the bank</task>
 
-      <h2>Using a Tasklist Component</h2>
-      <task-list></task-list>
+        <h2>Nested Components Tasklist & Task</h2>
+        <task-list></task-list>
+
+        <h1>Laracasts EP#9 Practicing Components</h1>
+        <h2>Defining a message-Component</h2>
+        <message title="Hello World" body="Lorem ipsum dolor sit amet."></message>
+        <message title="Hello Universe" body="Lorem ipsum dolor sit amet."></message>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="main.js"></script>
