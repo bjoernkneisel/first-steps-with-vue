@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
+  <head>
+  </head>
     <title></title>
 
 <style>
@@ -46,51 +47,16 @@
       <ul>
         <li v-for="task in incompleteTasks">{{task.description}}</li>
       </ul>
-    </div>
 
+      <h1>Laracasts EP#7-X Components 101</h1>
+      <h2>Using Slots with Components</h2>
+      <task>Go to the store</task>
+      <task>Go to the bank</task>
+
+      <h2>Using a Tasklist Component</h2>
+      <task-list></task-list>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
-      var app = new Vue({
-        el: '#root',
-        data: {
-          newName: '',
-          // Array of names
-          names: ['Joe', 'Mary', 'Jane', 'Jack'],
-          hoverTitle: 'Ich bin ein cooler Button',
-          className: 'color-red',
-          isLoading: false,
-          isDisabled: true,
-          message: 'Hello World',
-          tasks: [
-            { description: 'Go to the store', completed: true },
-            { description: 'Finish operations research homework', completed: false },
-            { description: 'Make donation to Deutsche Tierrettung', completed: true },
-            { description: 'Go through E-Mail inbox', completed: false },
-            { description: 'Walk yuki', completed: true },
-            { description: 'Clean apartment', completed: false },
-          ]
-        },
-        methods: {
-          addName() {
-            this.names.push(this.newName);
-            this.newName = '';
-          },
-          toggleClass() {
-            this.isLoading = true;
-          },
-          toggleButtonState() {
-            this.isDisabled = !this.isDisabled;
-          }
-        },
-        computed: {
-          reversedMessage() {
-            return this.message.split('').reverse().join('');
-          },
-          incompleteTasks() {
-            return this.tasks.filter(task => !task.completed);
-          }
-        }
-      })
-    </script>
+    <script src="main.js"></script>
   </body>
 </html>
