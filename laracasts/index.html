@@ -62,6 +62,14 @@
         <h2>Defining a message-Component</h2>
         <message title="Hello World" body="Lorem ipsum dolor sit amet."></message>
         <message title="Hello Universe" body="Lorem ipsum dolor sit amet."></message>
+
+        <h1>Laracasts EP#10 Practical Component Excercise</h1>
+        <h2>Using a Modal</h2>
+        
+        <modal v-if="showModal" @close="showModal=false">
+          <p>Lorem ipsum dolor sit amet, consectetur, adipisicing alit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+        </modal>
+        <button @click="showModal = true">Show Modal</button>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

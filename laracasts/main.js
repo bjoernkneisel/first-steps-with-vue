@@ -45,7 +45,21 @@ Vue.component('message', {
       this.isVisible = false;
     }
   }
-})
+});
+
+Vue.component('modal', {
+  template: `
+    <div class="modal is-active">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box">
+          <p><slot></slot></p>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close" @click="$emit('close')"></button>
+    </div>
+  `,
+});
 
 var app = new Vue({
   el: '#root',
@@ -58,6 +72,7 @@ var app = new Vue({
     isLoading: false,
     isDisabled: true,
     message: 'Hello World',
+    showModal: false,
     tasks: [
       { description: 'Go to the store', completed: true },
       { description: 'Finish operations research homework', completed: false },
