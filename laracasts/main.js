@@ -129,7 +129,7 @@ Vue.component('coupon', {
 
   methods: {
     onCouponApplied() {
-      this.$emit('applied');
+      Event.$emit('applied');
     }
   }
 });
@@ -138,6 +138,7 @@ window.Event = new Vue();
 
 new Vue({
   el: '#root',
+
   data: {
     newName: '',
     // Array of names
@@ -158,6 +159,7 @@ new Vue({
       { description: 'Clean apartment', completed: false },
     ]
   },
+
   methods: {
     addName() {
       this.names.push(this.newName);
@@ -173,6 +175,7 @@ new Vue({
       this.couponApplied = true;
     }
   },
+
   computed: {
     reversedMessage() {
       return this.message.split('').reverse().join('');
@@ -180,5 +183,13 @@ new Vue({
     incompleteTasks() {
       return this.tasks.filter(task => !task.completed);
     }
+  },
+
+  created() {
+    Event.$on('applied', () => {
+      alert('Handling it!');
+      this.onCouponApplied();
+      }
+    );
   }
 });
