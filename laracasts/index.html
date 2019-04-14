@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
   </head>
     <title></title>
@@ -70,6 +71,23 @@
           <p>Lorem ipsum dolor sit amet, consectetur, adipisicing alit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
         </modal>
         <button @click="showModal = true">Show Modal</button>
+
+        <h1>Laracasts EP#11 Tabs</h1>
+        <h2>Tab Logic Example</h2>
+        <tabs id="tabs">
+          <tab name="Start" :selected="true">
+            <h1>Willkommen!</h1>
+            <p>Blub blub blub.</p>
+          </tab>
+          <tab name="Über uns">
+            <h1>Wir über uns</h1>
+            <p>Bla bla bla blub.</p>
+          </tab>
+          <tab name="Unsere Vision">
+            <h1>Unsere Vision erklärt</h1>
+            <p>Bla bla bla bla bla bla.</p>
+          </tab>
+        </tabs>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
