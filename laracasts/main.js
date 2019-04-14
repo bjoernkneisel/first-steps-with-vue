@@ -6,6 +6,7 @@ Vue.component('task-list', {
   template:
     '<div><task v-for="task in tasks" :key="task.task">{{ task.task }}</task></div>'
   ,
+
   data() {
     return {
       tasks: [
@@ -121,7 +122,21 @@ Vue.component('tab', {
   `
 });
 
-var app = new Vue({
+Vue.component('coupon', {
+  template: `
+    <input placeholder="Coupon Code eingeben" @blur="onCouponApplied">
+  `,
+
+  methods: {
+    onCouponApplied() {
+      this.$emit('applied');
+    }
+  }
+});
+
+window.Event = new Vue();
+
+new Vue({
   el: '#root',
   data: {
     newName: '',
@@ -133,6 +148,7 @@ var app = new Vue({
     isDisabled: true,
     message: 'Hello World',
     showModal: false,
+    couponApplied: false,
     tasks: [
       { description: 'Go to the store', completed: true },
       { description: 'Finish operations research homework', completed: false },
@@ -152,6 +168,9 @@ var app = new Vue({
     },
     toggleButtonState() {
       this.isDisabled = !this.isDisabled;
+    },
+    onCouponApplied() {
+      this.couponApplied = true;
     }
   },
   computed: {
@@ -162,4 +181,4 @@ var app = new Vue({
       return this.tasks.filter(task => !task.completed);
     }
   }
-})
+});
