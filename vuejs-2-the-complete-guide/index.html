@@ -7,12 +7,24 @@
     <title>Vue.js 2 - The complete guide</title>
   </head>
   <body>
-    <div id="app" class="container">
-      <div class="header"></div>
+    <div id="app">
+      <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item">Vue.js 2 - The complete guide</a>
+        </div>
+      </nav>
+      <div class="container">
         <div class="content">
           <p>{{ title }}</p>
         </div>
-      <div class="footer"></div>
+      </div>
+      <nav class="navbar is-primary is-fixed-bottom">
+        <div class="level">
+          <p class="level-item has-text-centered"></p>
+          <p class="level-item has-text-centered">Bjoern Kneisel</p>
+          <p class="level-item has-text-centered"></p>
+        </div>
+      </nav>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="app.js"></script>
