@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-language" content="en" />
+    <meta name="author" content="Björn Kneisel" />
+    <noscript>This app works best with JavaScript enabled.</noscript>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <style>
+      .content {
+        padding-bottom: 0.5em;
+        border-bottom: 1px solid lightgrey;
+      }
+      .container {
+        padding-bottom: 5em;
+      }
+      .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+        display: inline-block;
+        margin: 10px;
+      }
+      .red {
+        background-color: red;
+      }
+      .green {
+        background-color: green;
+      }
+      .blue {
+        background-color: blue;
+      }
+      .float {
+        float: right;
+      }
+      .text-color {
+        color: yellow;
+      }
+      #effect {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+      }
+      .highlight {
+        background-color: red;
+        width: 200px !important;
+      }
+      .shrink {
+        background-color: gray;
+        width: 50px !important;
+      }
+      .visible {
+        width: 100px;
+        height: 50px;
+      }
+      .progress-bar {
+        width: 400px;
+        height: 20px;
+        background-color: lightgray;
+        border: 1px solid gray;
+      }
+    </style>
+  </head>
+    <title>Vue.js 2 - The complete guide</title>
+  </head>
+  <body>
+    <div id="app">
+      <nav class="navbar is-primary level">
+        <h3 class="level-item has-text-centered">
+          Vue.js 2 - The complete guide
+        </h3>
+      </nav>
+      <div class="container">
+        <div class="content">
+          <h1 v-once>{{ title }}</h1>
+          <code>{{ code1 }}</code>
+          <p>{{ sayHello() }}</h1>
+          <input type="text" v-on:input="changeTitle">
+        </div>
+        <div class="content">
+          <h4>Using v-bind on the href attribute:</h4>
+          <p>Option 1</p><code>v-bind:href="link"</code>
+          <p>Option 2</p><code>:href="link"</code>
+          <p>Result</p><a :href="link">Google</a>
+        </div>
+        <div class="content">
+          <div id="exercise">
+            <h1>Excercise 1</h1>
+            <!-- 1) Fill the <p> below with your Name and Age - using Interpolation -->
+              <p>VueJS is pretty cool - {{name}} ({{age}})</p>
+              <!-- 2) Output your age, multiplied by 3 -->
+              <p>{{ age * 3 }}</p>
+              <!-- 3) Call a function to output a random float between 0 and 1 (Math.random()) -->
+              <p v-once>{{ randomFloat() }}</p>
+              <!-- 4) Search any image on Google and output it here by binding the "src" attribute -->
+              <div>
+                <img :src="imgurl" style="width:100px;height:100px">
+              </div>
+              <!-- 5) Pre-Populate this input with your name (set the "value" attribute) -->
+              <div>
+                <input type="text" :value="name">
+              </div>
+          </div>
+        </div>
+        <div class="content">
+          <a class="button" @click="increase">Click me!</a>
+          <h1>{{counter}}</h1>
+          <p v-on:mousemove="updateCoordinates">
+            Coordinates: {{ x }} / {{ y }}
+            - <span v-on:mousemove.stop="">DEAD SPOT</span>
+          </p>
+          <input type="text" v-on:keyup.enter="alertMe"> 
+        </div>
+        <div class="content">
+          <div id="exercise">
+            <h1>Excercise 2</h1>
+            <!-- 1) Show an alert when the Button gets clicked -->
+            <div>
+              <button @click="alertMe">Show Alert</button>
+            </div>
+            <!-- 2) Listen to the "keydown" event and store the value in a data property (hint: event.target.value gives you the value) -->
+            <div>
+              <p>Type!</p>
+              <input type="text" v-on:keydown="value = $event.target.value">
+              <p>{{ value }}</p>
+            </div>
+            <!-- 3) Adjust the example from 2) to only fire if the "key down" is the ENTER key -->
+            <div>
+              <p>Type and press enter!</p>
+              <input type="text" v-on:keydown.enter="value = $event.target.value">
+              <p>{{ value }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <h1>2 Way Databinding with <code>v-model</code></h1>
+          <input type="text" v-model="name">
+          <p>{{ name }}</p>
+        </div>
+        <div class="content">
+          <h1>Computed Properties:</h1>
+          <h4>1st counter:</h4>
+          <a class="button is-success" @click="counter++">Increase</a>
+          <a class="button is-danger" @click="counter--">Decrease</a>
+          <h4>2nd counter:</h4>
+          <a class="button is-success" @click="secondCounter++">Increase</a>
+          <a class="button is-danger" @click="secondCounter--">Decrease</a>
+          <h4>Results</h4>
+          <p>Counter: {{ counter }}</p>
+          <p>Result as a method: {{ result() }}</p>
+          <p>Result as a computed property: {{ output }}</p>
+          <p>Secound Counter: {{ secondCounter }}</p>
+          <p class="has-text-weight-bold">Check the console logs, to see that result() (method) gets called even if the secondCounter is increased. However output() (computed property) does not.</p>
+        </div>
+        <div class="content">
+          <h1>Watched properties</h1>
+          <p>It is a best practice to use computed properties, whereever you can.</p>
+          <p>Computed properties don't work if you want asynchronous execution.</p>
+        </div>
+        <div class="content">
+          <div id="exercise">
+            <h1>Excercise 3</h1>
+            <h4>1) Show a "result" of 'not there yet' as long as "value" is not equal to 37 - you can change "value" with the buttons. Print 'done' once you did it</h4>
+            <div>
+              <p>Current Value: {{ newValue }}</p>
+              <button @click="newValue += 5">Add 5</button>
+              <button @click="newValue += 1">Add 1</button>
+              <p>Result: {{ newResult }}</p>
+            </div>
+            <h4>2) Watch for changes in the "result" and reset the "value" after 5 seconds (hint: setTimeout(..., 5000)</h4>
+            <div>
+              <p>Current value:{{ newValue }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <h1>Dynamic Styling with CSS-Classes</h1>
+          <p>Click on the 1st and 2nd box!</p>
+          <input type="text" v-model="color">
+          <p>Input a color, available: red, green, blue!</p>
+          <div class="demo" @click="attachRed = !attachRed" :class="{'red': attachRed}"></div>
+          <div class="demo" @click="attachRed = !attachRed" :class="divClasses"></div>
+          <div class="demo" :class="color"></div>
+        </div>
+        <div class="content">
+          <div id="exercise">
+            <p>1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class on each new setInterval tick (attach respective class to the div with id "effect" below)</p>
+            <div>
+              <button @click="startEffect">Start Effect</button>
+              <div id="effect" :class="effectClass"></div>
+            </div>
+            <p>2) Create a couple of CSS classes and attach them via the array syntax</p>
+            <div :class="[float, 'blue', 'text-color']">I got no class :(</div>
+            <p>3) Let the user enter a class (create some example classes) and attach it</p>
+            <div>
+              <input type="text" v-model="userClass">
+              <div :class="[{visible: true}, userClass]"></div>
+            </div>
+            <p>4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes</p>
+            <div>
+              <input type="text">
+              <p>Should the element float right ?</p>
+              <input type="text" v-model="isFloating">
+              <div :class="['blue', 'visible', {float: isFloating}]"></div>
+            </div>
+            <p>5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.</p>
+            <div>
+              <input type="text" v-model="myStyle.backgroundColor">
+              <div :style="myStyle"></div>
+            </div>
+            <p>6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button.</p>
+            <div>
+              <a class="button is-primary" @click="startProgress">Start Progress</a>
+              <div :class="'progress-bar'" :style="progressBar"></div>
+              <p v-if="width > 0">Please wait... Progress: {{ width/8 }}%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="navbar is-primary level is-fixed-bottom">
+        <p class="level-item has-text-centered">
+          Björn Kneisel
+        </p>
+      </nav>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
