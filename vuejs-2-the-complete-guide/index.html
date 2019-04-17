@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-language" content="en" />
+    <meta name="author" content="Björn Kneisel" />
+    <noscript>This app works best with JavaScript enabled.</noscript>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
   </head>
     <title>Vue.js 2 - The complete guide</title>
@@ -15,6 +20,7 @@
       </nav>
       <div class="container">
         <div class="content">
+          <input type="text" v-on:input="changeTitle">
           <p>{{ title }}</p>
         </div>
       </div>
