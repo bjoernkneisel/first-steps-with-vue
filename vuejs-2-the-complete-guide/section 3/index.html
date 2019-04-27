@@ -7,10 +7,7 @@
 		<meta name="author" content="Björn Kneisel" />
 		<noscript>This app works best with JavaScript enabled.</noscript>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"
-		/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
 		<style>
 			.content {
 				padding-bottom: 0.5em;
@@ -36,18 +33,19 @@
 					<a class="button is-primary" @click="show = !show">Switch</a>
 					<h2>Difference between v-if & v-show</h2>
 					<p>
-						v-if does not hide the element, it removes it from the dom. V-show
-						applies css to the element (display:none;).
+						v-if does not hide the element, it removes it from the dom. V-show applies css to the element
+						(display:none;).
 					</p>
 				</div>
 				<div class="content">
 					<h2>Looping through arrays with v-for!</h2>
 					<h4>Ingredients</h4>
 					<ul>
-						<li v-for="(ingredient, i) in ingredients">
-							{{ i + 1 }}: {{ ingredient }}
-						</li>
+						<li v-for="(ingredient, i) in ingredients">{{ i + 1 }}: {{ ingredient }}</li>
 					</ul>
+					<a class="button is-primary" @click="ingredients.push('spices')">Add Item</a>
+					<br />
+					<br />
 					<code>{{ code1 }} {{ code2 }} {{ code3 }}</code>
 					<h4>Using template tag:</h4>
 					<template v-for="(ingredient, index) in ingredients">
@@ -57,11 +55,55 @@
 					<h4>Persons:</h4>
 					<ul>
 						<li v-for="person in persons">
-							<div v-for="(value, key, index) in person">
-								{{ index + 1 }}. {{ key }}: {{ value }}
-							</div>
+							<div v-for="(value, key, index) in person">{{ index + 1 }}. {{ key }}: {{ value }}</div>
 						</li>
 					</ul>
+				</div>
+				<div class="content">
+					<h2>Excercise</h2>
+					<div id="exercise">
+						<p>
+							1) Hook up the button to toggle the display of the two paragraphs. Use both v-if and v-show and inspect
+							the elements to see the difference
+						</p>
+						<div>
+							<p class="has-text-weight-bold">v-if</p>
+							<p v-if="show">You either see me ...</p>
+							<p v-else>...or me</p>
+							<p class="has-text-weight-bold">v-show</p>
+							<p v-show="show">You either see me ...</p>
+							<p v-show="!show">...or me</p>
+							<a class="button is-primary" @click="show = !show">Toggle</a>
+						</div>
+						<p>2) Output an ul of array elements of your choice. Also print the index of each element.</p>
+						<p></p>
+						<ul>
+							<li v-for="(carmake, i) in carmakes">{{ i + 1 }} {{ carmake }}</li>
+						</ul>
+						<p>
+							3) Print all key-value pairs of the following object: {title: 'Lord of the Rings', author: 'J.R.R.
+							Tolkiens', books: '3'}. Also print the index of each item.
+						</p>
+						<ul v-for="series in bookseries">
+							<li v-for="(value, key, index) in series">{{ key }}: {{ value }} ({{ index + 1 }})</li>
+						</ul>
+						<p>
+							4) Print the following object (only the values) and also create a nested loop for the array: {name:
+							'TESTOBJECT', data: [1.67, 1.33, 0.98, 2.21]} (hint: use v-for and v-if to achieve this)
+						</p>
+						<ul>
+							<li v-for="value in dataArray">
+								<template v-if="Array.isArray(value)">
+									<div v-for="element in value">
+										<span>{{ element }}</span>
+									</div>
+								</template>
+								<template v-else>
+									{{ value }}
+								</template>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 			<nav class="navbar is-primary level is-fixed-bottom">
