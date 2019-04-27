@@ -29,7 +29,41 @@
 					Vue.js 2 - The complete guide
 				</h3>
 			</nav>
-			<div class="container"></div>
+			<div class="container">
+				<div class="content">
+					<p v-if="show">You can see me!</p>
+					<p v-else>Now you see me!!!!</p>
+					<a class="button is-primary" @click="show = !show">Switch</a>
+					<h2>Difference between v-if & v-show</h2>
+					<p>
+						v-if does not hide the element, it removes it from the dom. V-show
+						applies css to the element (display:none;).
+					</p>
+				</div>
+				<div class="content">
+					<h2>Looping through arrays with v-for!</h2>
+					<h4>Ingredients</h4>
+					<ul>
+						<li v-for="(ingredient, i) in ingredients">
+							{{ i + 1 }}: {{ ingredient }}
+						</li>
+					</ul>
+					<code>{{ code1 }} {{ code2 }} {{ code3 }}</code>
+					<h4>Using template tag:</h4>
+					<template v-for="(ingredient, index) in ingredients">
+						<p class="has-text-weight-bold">{{ ingredient }}</p>
+						<p>{{ index }}</p>
+					</template>
+					<h4>Persons:</h4>
+					<ul>
+						<li v-for="person in persons">
+							<div v-for="(value, key, index) in person">
+								{{ index + 1 }}. {{ key }}: {{ value }}
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
 			<nav class="navbar is-primary level is-fixed-bottom">
 				<p class="level-item has-text-centered">
 					Björn Kneisel
