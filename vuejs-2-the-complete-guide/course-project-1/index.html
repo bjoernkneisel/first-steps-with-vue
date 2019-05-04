@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="content-language" content="en" />
+		<meta name="author" content="Björn Kneisel" />
+		<noscript>This app works best with JavaScript enabled.</noscript>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+		<link rel="stylesheet" href="app.css" />
+		<title>Vue.js 2 - The complete guide</title>
+	</head>
+	<body>
+		<div id="app">
+			<nav class="navbar is-primary level">
+				<h3 class="level-item has-text-centered">
+					Vue.js 2 - The complete guide
+				</h3>
+			</nav>
+			<div class="container">
+				<div class="content">
+					<h1>First Course Project - A Game</h1>
+				</div>
+				<div class="columns status">
+					<div class="column">
+						<h1 class="text-center">YOU</h1>
+						<div class="healthbar">
+							<div
+								class="healthbar text-center"
+								:style="{width: playerHealth + '%'}"
+								style="background-color: #37D1B2; margin: 0; color: white;"
+							>
+								{{ playerHealth }}
+							</div>
+						</div>
+						<div class="content">
+              <br>
+							<p>Special Attacks left: {{ specialAttacks }}</h4>
+						</div>
+					</div>
+					<div class="column">
+						<h1 class="text-center">MONSTER</h1>
+						<div class="healthbar">
+							<div
+								class="healthbar text-center"
+								:style="{width: monsterHealth + '%'}"
+								style="background-color: #37D1B2; margin: 0; color: white;"
+							>
+								{{ monsterHealth }}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="columns controls" v-if="!gameIsRunning">
+					<div class="column">
+						<a class="button is-primary" id="start-game" @click="startGame">START NEW GAME</a>
+					</div>
+				</div>
+				<div class="columns controls" v-else>
+					<div class="column">
+						<a class="button is-danger" @click="attack">ATTACK</a>
+					</div>
+					<div class="column">
+						<a class="button is-warning" @click="specialAttack">SPECIAL ATTACK</a>
+					</div>
+					<div class="column">
+						<a class="button is-primary" @click="heal">HEAL</a>
+					</div>
+					<div class="column">
+						<a class="button is-dark" @click="surrender">SURRENDER</a>
+					</div>
+				</div>
+				<div class="columns log" v-if="turns.length > 0">
+					<div class="column">
+            <ul>
+              <li v-for="turn in turns">
+                <template v-if="turn.turnDone === true">
+                  <hr>
+                  <p>Turn: {{turn.turnNumber}}</p>
+                </template>
+                <span :class="{'player-turn': turn.isPlayer, 'monster-turn': !turn.isPlayer}">{{turn.text}}</span>
+              </li>
+            </ul>
+          </div>
+				</div>
+			</div>
+			<nav class="navbar is-primary level is-fixed-bottom">
+				<p class="level-item has-text-centered">
+					Björn Kneisel
+				</p>
+			</nav>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>
