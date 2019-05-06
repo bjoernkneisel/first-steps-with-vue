@@ -1,2 +1,3 @@
 # first-steps-with-vue
-Learning the vue basics.
+Learning the basics of the VueJS Framework and documenting the progress.
+
