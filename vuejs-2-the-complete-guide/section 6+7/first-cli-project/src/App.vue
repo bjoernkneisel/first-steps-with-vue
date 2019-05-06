@@ -2,6 +2,8 @@
   <div id="app">
     <img src="./assets/logo.png">
     <h1>Hello World!</h1>
+    <p>Excuse me, what did just happen?</p>
+    <app-servers></app-servers>
   </div>
 </template>
 
