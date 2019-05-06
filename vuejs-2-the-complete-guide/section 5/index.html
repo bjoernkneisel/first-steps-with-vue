@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="content-language" content="en" />
+		<meta name="author" content="Björn Kneisel" />
+		<noscript>This app works best with JavaScript enabled.</noscript>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+		<link rel="stylesheet" href="app.css" />
+		<title>Vue.js 2 - The complete guide</title>
+	</head>
+	<body>
+		<div id="app">
+			<nav class="navbar is-primary level">
+				<h3 class="level-item has-text-centered">
+					Vue.js 2 - The complete guide
+				</h3>
+			</nav>
+			<div class="container">
+				<div class="content">
+					<h1>Section 5</h1>
+					<p>
+						Vue uses a representation of the actual DOM, because DOM-Updates are not very performant. Vue creates a
+						Virtual-DOM.
+					</p>
+					<h4>The VueJS-Instance Lifecycle</h4>
+					<p>
+						The VueJS Instance Lifecycle starts with the new Vue() constructor. It uses the beforeCreate() method to
+						initialize Data & Events, executing created() when finished. Then the template will be compiled and we call
+						beforeMount(). At this point the compiled html will mount to the actual DOM. Data changed => beforeUpdate(),
+						Desctruction of the Vue Instance: beforeDestroy(), afterwards destroyed().
+					</p>
+					<h4>Executing code at different Lifecycle Stages:</h4>
+					<p>Use the provided methods as "hooks".</p>
+					<p>Check the console logs.</p>
+					<a class="button is-primary" @click="destroyVue()">Destroy Vue!</a>
+					<h5>Reactivity will be lost.</h5>
+					<p>{{ title }}</p>
+					<input v-model="title" />
+				</div>
+			</div>
+			<nav class="navbar is-primary level is-fixed-bottom">
+				<p class="level-item has-text-centered">
+					Björn Kneisel
+				</p>
+			</nav>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>
